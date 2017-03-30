@@ -1,19 +1,52 @@
 package id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.IOException;
 
 import id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.R;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Section2Fragment extends Fragment {
 
+	//constant to track image chooser intent
+	private static final int PICK_IMAGE_REQUEST = 234;
+
+	//view objects
+	private Button buttonChoose;
+	private Button buttonUpload;
+	private EditText editTextName;
+	private TextView textViewShow;
+	private ImageView imageView;
+
+	//uri to store file
+	private Uri filePath;
+
+	//firebase objects
+	private StorageReference storageReference;
+	private DatabaseReference mDatabase;
 
 	public Section2Fragment() {
 		// Required empty public constructor
@@ -24,7 +57,53 @@ public class Section2Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_section2, container, false);
+		View myView = inflater.inflate(R.layout.fragment_section2, container, false);
+		buttonChoose = (Button) myView.findViewById(R.id.buttonChoose);
+		buttonUpload = (Button) myView.findViewById(R.id.buttonUpload);
+		imageView = (ImageView) myView.findViewById(R.id.imageView);
+		editTextName = (EditText) myView.findViewById(R.id.editText);
+
+		storageReference = FirebaseStorage.getInstance().getReference();
+		mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+
+		buttonChoose.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View view) {
+				showFileChooser();
+			}
+		});
+
+		buttonUpload.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View view) {
+				;
+			}
+		});
+
+		return myView;
+	}
+
+	private void showFileChooser() {
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+			filePath = data.getData();
+			try {
+				Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
+				imageView.setImageBitmap(bitmap);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
