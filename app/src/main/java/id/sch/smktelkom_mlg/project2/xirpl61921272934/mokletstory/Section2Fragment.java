@@ -1,24 +1,33 @@
 package id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory;
 
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -78,7 +87,7 @@ public class Section2Fragment extends Fragment {
 		{
 			@Override
 			public void onClick(View view) {
-				;
+				uploadFile();
 			}
 		});
 
@@ -90,6 +99,62 @@ public class Section2Fragment extends Fragment {
 		intent.setType("image/*");
 		intent.setAction(Intent.ACTION_GET_CONTENT);
 		startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+	}
+
+	public String getFileExtension(Uri uri) {
+		ContentResolver cR = getActivity().getContentResolver();
+		MimeTypeMap mime = MimeTypeMap.getSingleton();
+		return mime.getExtensionFromMimeType(cR.getType(uri));
+	}
+
+	private void uploadFile() {
+		//checking if file is available
+		if (filePath != null) {
+			//displaying progress dialog while image is uploading
+			final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+			progressDialog.setTitle("Uploading");
+			progressDialog.show();
+
+			//getting the storage reference
+			StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + "." + getFileExtension(filePath));
+
+			//adding the file to reference
+			sRef.putFile(filePath)
+					.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+						@Override
+						public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+							//dismissing the progress dialog
+							progressDialog.dismiss();
+
+							//displaying success toast
+							Toast.makeText(getActivity().getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+
+							//creating the upload object to store uploaded image details
+							Upload upload = new Upload(editTextName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
+
+							//adding an upload to firebase database
+							String uploadId = mDatabase.push().getKey();
+							mDatabase.child(uploadId).setValue(upload);
+						}
+					})
+					.addOnFailureListener(new OnFailureListener() {
+						@Override
+						public void onFailure(@NonNull Exception exception) {
+							progressDialog.dismiss();
+							Toast.makeText(getActivity().getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+						}
+					})
+					.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+						@Override
+						public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+							//displaying the upload progress
+							double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+							progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+						}
+					});
+		} else {
+			//display an error if no file is selected
+		}
 	}
 
 	@Override
