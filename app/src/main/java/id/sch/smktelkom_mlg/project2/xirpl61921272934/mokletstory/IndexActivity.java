@@ -28,6 +28,7 @@ public class IndexActivity extends AppCompatActivity {
                     changeFragment(0);
                     return true;
                 case R.id.navigation_dashboard:
+                    changeFragment(2);
                     changeFragment(1);
                     return true;
                 case R.id.navigation_notifications:

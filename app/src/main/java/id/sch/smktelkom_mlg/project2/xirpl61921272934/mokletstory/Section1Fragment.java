@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,6 +64,7 @@ public class Section1Fragment extends Fragment {
 		progressDialog = new ProgressDialog(getActivity());
 
 		uploads = new ArrayList<>();
+		final Context mContext = getActivity().getApplicationContext();
 
 		//displaying progress dialog while fetching images
 		progressDialog.setMessage("Please wait...");
@@ -82,7 +84,7 @@ public class Section1Fragment extends Fragment {
 					uploads.add(upload);
 				}
 				//creating adapter
-				adapter = new MyAdapter(getActivity().getApplicationContext(), uploads);
+				adapter = new MyAdapter(mContext, uploads);
 
 				//adding adapter to recyclerview
 				recyclerView.setAdapter(adapter);
