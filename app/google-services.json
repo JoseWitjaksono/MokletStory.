@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "659544830452",
+    "firebase_url": "https://mokletstory.firebaseio.com",
+    "project_id": "mokletstory",
+    "storage_bucket": "mokletstory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659544830452:android:54a28008551a35d0",
+        "android_client_info": {
+          "package_name": "id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659544830452-tlok2b1cp8s3v92eb4jnqusmf967fo4h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory",
+            "certificate_hash": "7f80d3a0fd94bf6d8b13cb280f5ebe613dd0212b"
+          }
+        },
+        {
+          "client_id": "659544830452-4l8lq2rsdme7aci01o0gitbhrge16qh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsdqepY9bjm_qBlgAgSBJhxaC_WXtKi-A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659544830452-4l8lq2rsdme7aci01o0gitbhrge16qh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
