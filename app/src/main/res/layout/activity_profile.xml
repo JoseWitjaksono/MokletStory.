@@ -7,7 +7,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.Section3Fragment">
+                tools:context=".Section3Fragment">
 
 
     <LinearLayout
@@ -32,5 +32,6 @@
             android:text="Logout"
             android:id="@+id/buttonLogout"
             android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 </RelativeLayout>
