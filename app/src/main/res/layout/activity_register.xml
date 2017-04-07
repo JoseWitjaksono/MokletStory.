@@ -11,19 +11,19 @@
                 tools:context="id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.MainActivity">
 
     <LinearLayout
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="center_horizontal"
             android:text="User Registration"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -48,15 +48,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Signup" />
+            android:text="Sign up" />
 
         <TextView
-            android:text="Already Registered? Signin Here"
             android:id="@+id/textViewSignin"
-            android:textAlignment="center"
-            android:layout_margin="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Already Registered? Signin Here"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
