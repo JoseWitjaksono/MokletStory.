@@ -46,13 +46,9 @@ public class Section3Fragment extends Fragment implements View.OnClickListener {
 		}
 		FirebaseUser user = firebaseAuth.getCurrentUser();
 
-		textViewUserEmail = (TextView)myView.findViewById(R.id.textViewUserEmail);
-		buttonLogout = (Button) myView.findViewById(R.id.buttonLogout);
-
-		textViewUserEmail.setText(user.getEmail());
 		buttonLogout.setOnClickListener(this);
 
-		//getUsername();
+		getUsername();
 		return myView;
 	}
 
