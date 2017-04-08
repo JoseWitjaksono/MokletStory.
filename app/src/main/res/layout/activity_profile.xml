@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -7,13 +8,14 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".Section3Fragment">
+                tools:context="id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.Section3Fragment">
 
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -23,22 +25,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/textViewUserEmail"
+            android:id="@+id/textViewUsername"
             android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/textViewUsername"
+            android:id="@+id/textViewWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text="Yuk share foto liburanmu :D"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:layout_below="@id/textViewUsername"
+            android:layout_weight="0.95"
+            app:srcCompat="@drawable/island"/>
+
+        <Button
             android:id="@+id/buttonLogout"
-            android:layout_gravity="center_horizontal" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Logout"/>
 
     </LinearLayout>
 </RelativeLayout>

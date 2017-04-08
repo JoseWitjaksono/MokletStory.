@@ -52,7 +52,7 @@ public class Section3Fragment extends Fragment implements View.OnClickListener {
 		textViewUserEmail.setText(user.getEmail());
 		buttonLogout.setOnClickListener(this);
 
-		getUsername();
+		//getUsername();
 		return myView;
 	}
 
@@ -63,7 +63,7 @@ public class Section3Fragment extends Fragment implements View.OnClickListener {
 				@Override
 				public void onDataChange(DataSnapshot dataSnapshot) {
 					String username = dataSnapshot.getValue(String.class);
-					textViewUsername.setText(username);
+					textViewUsername.setText("Selamat Datang "+username+" !");
 				}
 
 				@Override
