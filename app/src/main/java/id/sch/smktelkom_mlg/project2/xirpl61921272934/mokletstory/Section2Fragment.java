@@ -22,8 +22,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -47,7 +51,7 @@ public class Section2Fragment extends Fragment {
 	private Button buttonChoose;
 	private Button buttonUpload;
 	private EditText editTextName;
-	private TextView textViewShow;
+	private TextView textViewTumbal,textViewKoneksi;
 	private ImageView imageView;
 
 	//uri to store file
@@ -55,7 +59,8 @@ public class Section2Fragment extends Fragment {
 
 	//firebase objects
 	private StorageReference storageReference;
-	private DatabaseReference mDatabase;
+	private DatabaseReference mDatabase,myDatabase;
+	private FirebaseAuth firebaseAuth;
 
 	public Section2Fragment() {
 		// Required empty public constructor
@@ -71,9 +76,13 @@ public class Section2Fragment extends Fragment {
 		buttonUpload = (Button) myView.findViewById(R.id.buttonUpload);
 		imageView = (ImageView) myView.findViewById(R.id.imageView);
 		editTextName = (EditText) myView.findViewById(R.id.editText);
+		textViewTumbal = (TextView) myView.findViewById(R.id.textViewTumbal);
+		textViewKoneksi = (TextView) myView.findViewById(R.id.textViewKoneksi);
 
 		storageReference = FirebaseStorage.getInstance().getReference();
 		mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+		myDatabase = FirebaseDatabase.getInstance().getReference();
+		firebaseAuth = FirebaseAuth.getInstance();
 
 		buttonChoose.setOnClickListener(new View.OnClickListener()
 		{
@@ -91,7 +100,35 @@ public class Section2Fragment extends Fragment {
 			}
 		});
 
+		//textViewTumbal.setText("error");
+		getUsername();
 		return myView;
+	}
+
+	private void getUsername() {
+			DatabaseReference userName = myDatabase.child("User_Info").child(firebaseAuth.getCurrentUser().getUid()).child("username");
+			userName.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(DataSnapshot dataSnapshot) {
+					String username = dataSnapshot.getValue(String.class);
+					textViewTumbal.setText(username);
+				}
+
+				@Override
+				public void onCancelled(DatabaseError databaseError) {
+
+				}
+			});
+	}
+
+	private void netcheck() {
+		if(textViewTumbal.getText().toString()=="")
+		{
+			textViewKoneksi.setText("Cek Koneksi Anda !");
+		}
+		else
+		{
+		}
 	}
 
 	private void showFileChooser() {
@@ -130,7 +167,7 @@ public class Section2Fragment extends Fragment {
 							Toast.makeText(getActivity().getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
 
 							//creating the upload object to store uploaded image details
-							Upload upload = new Upload(editTextName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
+							Upload upload = new Upload(textViewTumbal.getText().toString().trim(), editTextName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
 
 							//adding an upload to firebase database
 							String uploadId = mDatabase.push().getKey();

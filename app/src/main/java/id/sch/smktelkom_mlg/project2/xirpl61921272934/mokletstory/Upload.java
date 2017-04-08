@@ -7,6 +7,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 public class Upload {
 
+	public String username;
 	public String name;
 	public String url;
 
@@ -15,10 +16,12 @@ public class Upload {
 	public Upload() {
 	}
 
-	public Upload(String name, String url) {
+	public Upload(String username,String name, String url) {
+		this.username = username;
 		this.name = name;
 		this.url= url;
 	}
+	public String getUsername() {return username; };
 
 	public String getName() {
 		return name;

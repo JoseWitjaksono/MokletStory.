@@ -56,7 +56,7 @@ public class Section3Fragment extends Fragment implements View.OnClickListener {
 		return myView;
 	}
 
-	public void getUsername() {
+	private void getUsername() {
 		if(textViewUsername.getText().toString() == "") {
 			DatabaseReference userName = mDatabase.child("User_Info").child(firebaseAuth.getCurrentUser().getUid()).child("username");
 			userName.addValueEventListener(new ValueEventListener() {
