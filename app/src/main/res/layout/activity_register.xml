@@ -13,8 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
 
         <TextView
@@ -26,10 +28,18 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Enter Username"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+        <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:hint="Enter email"
             android:inputType="textEmailAddress"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
@@ -38,7 +48,7 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:hint="Enter password"
             android:inputType="textPassword"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>

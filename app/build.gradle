@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'qeyta'
             keyPassword 'kelompok'
-            storeFile file('D:/FileProjectAndroidStudio/MokletStory/key/qey.jks')
+            storeFile file('F:/AndroidProjects/MokletStory/key/qey.jks')
             storePassword 'kelompok'
         }
     }
