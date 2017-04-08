@@ -31,7 +31,7 @@ import java.util.List;
 public class Section1Fragment extends Fragment {
 	//recyclerview object
 	private RecyclerView recyclerView;
-
+	private LinearLayoutManager mLayoutManager;
 	//adapter object
 	private RecyclerView.Adapter adapter;
 
@@ -58,7 +58,10 @@ public class Section1Fragment extends Fragment {
 
 		recyclerView = (RecyclerView) myView.findViewById(R.id.recyclerView);
 		recyclerView.setHasFixedSize(true);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		mLayoutManager = new LinearLayoutManager(getActivity());
+		mLayoutManager.setReverseLayout(true);
+		mLayoutManager.setStackFromEnd(true);
+		recyclerView.setLayoutManager(mLayoutManager);
 
 
 		progressDialog = new ProgressDialog(getActivity());
@@ -77,6 +80,7 @@ public class Section1Fragment extends Fragment {
 			public void onDataChange(DataSnapshot snapshot) {
 				//dismissing the progress dialog
 				progressDialog.dismiss();
+
 
 				//iterating through all the values in database
 				for (DataSnapshot postSnapshot : snapshot.getChildren()) {

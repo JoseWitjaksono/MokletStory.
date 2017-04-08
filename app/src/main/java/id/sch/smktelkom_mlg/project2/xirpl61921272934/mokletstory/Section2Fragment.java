@@ -100,8 +100,8 @@ public class Section2Fragment extends Fragment {
 			}
 		});
 
-		//textViewTumbal.setText("error");
 		getUsername();
+		netcheck();
 		return myView;
 	}
 
