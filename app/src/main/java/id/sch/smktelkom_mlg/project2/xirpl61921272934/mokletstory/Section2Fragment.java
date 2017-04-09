@@ -101,7 +101,6 @@ public class Section2Fragment extends Fragment {
 		});
 
 		getUsername();
-		netcheck();
 		return myView;
 	}
 
@@ -119,16 +118,6 @@ public class Section2Fragment extends Fragment {
 
 				}
 			});
-	}
-
-	private void netcheck() {
-		if(textViewTumbal.getText().toString()=="")
-		{
-			textViewKoneksi.setText("Cek Koneksi Anda !");
-		}
-		else
-		{
-		}
 	}
 
 	private void showFileChooser() {
