@@ -106,6 +106,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	@Override
+	public void onBackPressed() {
+	}
+
+	@Override
 	public void onClick(View view) {
 		if(view == buttonSignIn){
 			userLogin();
