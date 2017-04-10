@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -33,6 +34,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 import id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.R;
@@ -48,10 +52,9 @@ public class Section2Fragment extends Fragment {
 	private static final int PICK_IMAGE_REQUEST = 234;
 
 	//view objects
-	private Button buttonChoose;
 	private Button buttonUpload;
 	private EditText editTextName;
-	private TextView textViewTumbal,textViewKoneksi;
+	private TextView textViewTumbal;
 	private ImageView imageView;
 
 	//uri to store file
@@ -72,19 +75,17 @@ public class Section2Fragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View myView = inflater.inflate(R.layout.fragment_section2, container, false);
-		buttonChoose = (Button) myView.findViewById(R.id.buttonChoose);
 		buttonUpload = (Button) myView.findViewById(R.id.buttonUpload);
 		imageView = (ImageView) myView.findViewById(R.id.imageView);
 		editTextName = (EditText) myView.findViewById(R.id.editText);
 		textViewTumbal = (TextView) myView.findViewById(R.id.textViewTumbal);
-		textViewKoneksi = (TextView) myView.findViewById(R.id.textViewKoneksi);
 
 		storageReference = FirebaseStorage.getInstance().getReference();
 		mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 		myDatabase = FirebaseDatabase.getInstance().getReference();
 		firebaseAuth = FirebaseAuth.getInstance();
 
-		buttonChoose.setOnClickListener(new View.OnClickListener()
+		imageView.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View view) {
@@ -190,7 +191,21 @@ public class Section2Fragment extends Fragment {
 			filePath = data.getData();
 			try {
 				Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
-				imageView.setImageBitmap(bitmap);
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+				Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+				double size = bitmap.getByteCount()/14353131;
+
+				if (size>3){
+					imageView.setImageBitmap(decoded);
+					buttonUpload.setText("Ukuran File : "+size+"MB, MAX 3MB");
+					buttonUpload.setEnabled(false);
+				}
+				else {
+					imageView.setImageBitmap(decoded);
+					buttonUpload.setText("UPLOAD");
+					buttonUpload.setEnabled(true);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
