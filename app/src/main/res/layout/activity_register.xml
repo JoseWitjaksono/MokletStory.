@@ -1,151 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/bg1"
-              android:orientation="vertical"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context="id.sch.smktelkom_mlg.project2.xirpl61921272934.mokletstory.MainActivity">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:textAlignment="center"
-        app:srcCompat="@drawable/octicons"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/imageView4"
-        android:layout_above="@+id/linearLayoutx"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayoutx"
-        android:layout_above="@+id/linearLayouty"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:padding="5dp"
-            app:srcCompat="@drawable/ic_account_box_white_24dp"/>
-
-        <EditText
-            android:id="@+id/editTextUsername"
+        <RelativeLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/colorWhite"
-            android:ems="10"
-            android:hint="Username"
-            android:inputType="textPersonName"
-            android:padding="11dp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"/>
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textViewSignUp"
+            android:background="@drawable/bg1">
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayouty"
-        android:layout_alignBottom="@+id/linearLayoutz"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp">
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/linearLayoutx"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:padding="4dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/octicons"/>
 
-        <ImageView
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:padding="5dp"
-            app:srcCompat="@drawable/ic_email_white_24dp"/>
+            <LinearLayout
+                android:id="@+id/linearLayoutx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/linearLayouty"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/colorWhite"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="11dp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"/>
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_account_box_white_24dp"/>
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/colorWhite"
+                    android:ems="10"
+                    android:hint="Username"
+                    android:inputType="textPersonName"
+                    android:padding="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayoutz"
-        android:layout_alignBottom="@+id/buttonSignup"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="44dp">
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:padding="5dp"
-            app:srcCompat="@drawable/ic_lock_white_24dp"/>
+            <LinearLayout
+                android:id="@+id/linearLayouty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/linearLayoutz"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/colorWhite"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="11dp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"/>
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_email_white_24dp"/>
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/colorWhite"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"/>
 
-    <Button
-        android:id="@+id/buttonSignup"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="Daftar !"
-        android:layout_marginBottom="49dp"
-        android:layout_above="@+id/linearLayout9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/cardview_light_background"
-        android:id="@+id/linearLayout9">
+            <LinearLayout
+                android:id="@+id/linearLayoutz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/buttonSignup"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_lock_white_24dp"/>
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/colorWhite"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSignup"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="Daftar"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/textViewSignin"
-            android:layout_width="match_parent"
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:padding="10dp"
-            android:text="Sudah punya akun? Login disini"
-            android:textAlignment="center"
-            android:textColor="@color/colorBlack"/>
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Sudah punya akun? Login disini"/>
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

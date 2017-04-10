@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		editTextEmail = (EditText) findViewById(R.id.editTextEmail);
 		editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 		editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-		textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+		textViewSignin = (TextView) findViewById(R.id.textViewSignUp);
 
 
 		buttonSignup = (Button) findViewById(R.id.buttonSignup);

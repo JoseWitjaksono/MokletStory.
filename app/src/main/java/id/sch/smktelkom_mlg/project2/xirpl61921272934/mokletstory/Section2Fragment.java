@@ -211,5 +211,4 @@ public class Section2Fragment extends Fragment {
 			}
 		}
 	}
-
 }
